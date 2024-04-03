@@ -3,17 +3,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { CastCard } from "./PosterCard";
-
+const APIKEY = process.env.APIKEY;
 
 export default function DetailedPage() {
   const data = useLocation();
   const movieID = data.state.id;
   const posterURL = `https://image.tmdb.org/t/p/w500`;
- 
-  const APIKEY = "c45a857c193f6302f2b5061c3b85e743";
 
   const [movieDetails, setMovieDetails] = useState(null);
-  const [castDetails , setCastDetails] = useState(null);
+  const [castDetails, setCastDetails] = useState(null);
 
   const movieDetailsURL = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${APIKEY}&language=en-US`;
   const castURL = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${APIKEY}&language=en-US`;
@@ -27,13 +25,13 @@ export default function DetailedPage() {
       .catch((e) => console.log(e));
   }
 
-
-  async function getCast(){
+  async function getCast() {
     axios
-    .get(castURL)
-    .then((res)=>{
-    setCastDetails(res.data.cast)})
-    .catch(e=>console.log(e))
+      .get(castURL)
+      .then((res) => {
+        setCastDetails(res.data.cast);
+      })
+      .catch((e) => console.log(e));
   }
 
   useEffect(() => {
@@ -46,10 +44,6 @@ export default function DetailedPage() {
       {movieDetails !== null && movieDetails !== undefined ? (
         <div>
           <div className="rounded mt-2 col-lg-11 col-12 d-flex flex-wrap flex-sm-row flex-column mx-auto bg-secondary">
-
-
-
-
             <div className=" col-lg-6 col-12  p-3    mx-auto">
               <div className=" d-flex gap-2">
                 <div className="col-3 p-1">
@@ -89,13 +83,9 @@ export default function DetailedPage() {
               </div>
             </div>
 
-
-
-
-
-
             <div className=" col-lg-6  col-12  rounded d-flex justify-content-lg-end  justify-content-center">
-              <img className=" w-100"
+              <img
+                className=" w-100"
                 // style={{ width: "900px" }}
                 src={posterURL + movieDetails.backdrop_path}
                 alt={movieDetails.title}
@@ -107,13 +97,11 @@ export default function DetailedPage() {
             <p className="display-c2">Cast</p>
 
             <div className=" row gy-3 mx-sm-3">
-
-                { castDetails !==null &&  castDetails.map((item,index)=>(
-                    <div key={index} className="col-lg-2 col-sm-3 col-4">
-                      <CastCard cast={item}  />
-                    </div>
-                    
-                    
+              {castDetails !== null &&
+                castDetails.map((item, index) => (
+                  <div key={index} className="col-lg-2 col-sm-3 col-4">
+                    <CastCard cast={item} />
+                  </div>
                 ))}
             </div>
           </div>

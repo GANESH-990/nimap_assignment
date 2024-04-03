@@ -18,7 +18,6 @@ export default function Home() {
       .catch((error) => console.log(error));
   }
 
-
   useEffect(() => {
     getTopRated();
   }, []);
@@ -30,8 +29,8 @@ export default function Home() {
           <div className="row">
             {data.results.map((item, index) => (
               <div key={index} className={`col-lg-2 col-sm-3 col-10`}>
-              <PosterCard item={item} />
-            </div>
+                <PosterCard item={item} />
+              </div>
             ))}
           </div>
         ) : (
