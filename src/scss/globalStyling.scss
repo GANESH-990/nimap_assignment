@@ -1,0 +1,63 @@
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+
+
+
+
+
+//custom colors
+$custom-colors:(
+  "background":#282c33,
+  "fontColor":#fefefe,
+  "navBar":#343a3f
+
+);
+
+//custom spacers
+$custom-spacers: (
+
+//fractions
+  f1: 0.25rem,  //4px
+  f2:0.50rem,   //8px
+  f3:0.75rem,   //12px
+
+  f4:1.25rem,   //20px
+  f5:1.50rem,   //24px
+  f6:1.75rem,   //28px
+
+  f7:2.25rem,   //36px
+  f8:2.50rem,   //40px
+  f9:2.75rem,   //44px
+
+  // whole numbers
+  c1: 1rem,     //16px
+  c2: 2rem,     //32px
+  c3: 3rem,     //48px
+  c4: 4rem,     //64px
+  c5: 5rem,     //80px
+  c6: 6rem,     //96px
+  c7: 7rem,     //112px
+
+  //percentage
+  12d5pt: 12.5%,
+  25pt: 25%,
+
+);
+
+//merge spacers
+$spacers: map-merge($spacers, $custom-spacers);
+
+//merge colors
+$theme-colors:map-merge($theme-colors, $custom-colors );
+
+//merge display sizes
+$display-font-sizes:map-merge($display-font-sizes,$custom-spacers );
+
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+a{
+    text-decoration: none;
+    color: $secondary;
+}
